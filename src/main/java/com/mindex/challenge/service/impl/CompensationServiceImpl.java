@@ -18,7 +18,10 @@ public class CompensationServiceImpl implements CompensationService {
 
     @Override
     public Compensation createCompensation(String id, String salary, String effectiveDate){
+        //creating compensation
         Compensation compensation = new Compensation(id, salary, effectiveDate);
+
+        //inserting compensation
         return compensationRepository.save(compensation);
     }
 
@@ -26,8 +29,10 @@ public class CompensationServiceImpl implements CompensationService {
     public Compensation getCompensation(String id){
         LOG.debug("Getting compensation with id {}", id);
 
+        //fetching compensation
         Compensation compensation = compensationRepository.findByEmployeeId(id);
 
+        //throwing exception if compensation does not exist
         if (compensation == null) {
             throw new RuntimeException("Compensation with id " + id + " not found");
         }

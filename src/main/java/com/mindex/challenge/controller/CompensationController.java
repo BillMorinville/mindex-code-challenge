@@ -18,9 +18,13 @@ public class CompensationController {
     @PostMapping("/compensation/create/{id}")
     public Compensation createCompensation(@PathVariable String id, @RequestBody Compensation compensation) {
         LOG.debug("Received compensation CREATE request for id [{}]", id);
+
+        // getting compensation values
         String employeeId = compensation.getEmployeeId();
         String salary = compensation.getSalary();
         String effectiveDate = compensation.getEffectiveDate();
+
+        //calling service to create compensation
         return compensationService.createCompensation(employeeId, salary, effectiveDate);
     }
 

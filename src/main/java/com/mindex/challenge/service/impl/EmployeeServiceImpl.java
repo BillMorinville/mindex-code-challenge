@@ -52,8 +52,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public ReportingStructure calculateNumberOfReports(String id) {
+        //fetching employee by employeeId
         Employee employee = read(id);
+
+        //getting reports from employee
         List<Employee> directReports = employee.getDirectReports();
+
         return new ReportingStructure(employee, directReports.size());
     }
 

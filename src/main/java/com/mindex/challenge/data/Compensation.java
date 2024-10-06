@@ -12,7 +12,6 @@ public class Compensation {
         this.effectiveDate = effectiveDate;
     }
 
-
     public String getEmployeeId() {
         return employeeId;
     }

@@ -36,18 +36,25 @@ public class CompensationServiceImplTest {
 
     @Test
     public void testCreateReadCompensation() {
+        //creating test compensation
         Compensation testCompensation = new Compensation(UUID.randomUUID().toString(), "100,000", "10-06-2024");
 
-        // Create checks
+        // testing POST REST endpoint
         Compensation createdCompensation = restTemplate.postForEntity(compensationCreateUrl, testCompensation, Compensation.class, testCompensation.getEmployeeId()).getBody();
 
+        //verifying employeeId is not null
         assertNotNull(createdCompensation.getEmployeeId());
+
+        //verifying compensation values match
         assertCompensation(testCompensation, createdCompensation);
 
-
-        // Read checks
+        // testing GET REST endpoint
         Compensation readCompensation = restTemplate.getForEntity(compensationGetUrl, Compensation.class, createdCompensation.getEmployeeId()).getBody();
+
+        //verifying employeeId is not null
         assertEquals(createdCompensation.getEmployeeId(), readCompensation.getEmployeeId());
+
+        //verifying compensation values match
         assertCompensation(createdCompensation, readCompensation);
     }
 

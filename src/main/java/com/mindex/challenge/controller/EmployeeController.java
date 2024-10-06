@@ -39,7 +39,11 @@ public class EmployeeController {
 
     @GetMapping("/employee/get-reports/{id}")
     public ReportingStructure getDirectReports(@PathVariable String id) {
+
+        //logging for debugging
         LOG.debug("Received employee direct reports request for id [{}]", id);
+
+        //calling service to get number of reports
         return employeeService.calculateNumberOfReports(id);
     }
 }
